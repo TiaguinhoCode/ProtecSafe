@@ -73,7 +73,7 @@ export default function Faqs() {
                         className="mb-8 flex justify-center md:mb-0 md:w-5/12"
                     >
                         <div className="w-full max-w-[760px]">
-                            <Image src={faqImg} alt="FAQ" className="w-full h-auto object-contain" />
+                            <Image src={faqImg} alt="FAQ" className="w-full h-auto object-contain" priority={true} quality={100} />
                         </div>
                     </motion.div>
 
