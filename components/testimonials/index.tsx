@@ -1,8 +1,17 @@
 'use client'
 
+// React
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronLeft, FaChevronRight, FaQuoteRight, FaRegStar, FaStar } from 'react-icons/fa';
+
+// Bibliotecas
+import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Autoplay } from 'swiper/modules'
+import { FaQuoteRight, FaRegStar, FaStar } from 'react-icons/fa';
+
+// css
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 interface TestimonialProps {
     name: string;
@@ -55,34 +64,32 @@ const TestimonialCard: React.FC<TestimonialProps> = ({ name, role, company, imag
     <motion.div
         variants={cardVariants}
         initial="hidden"
-        animate="visible"
-        className="bg-blue-900 rounded-2xl shadow-2xl p-8 relative overflow-hidden hover:shadow-blue-500/50 transition-shadow duration-300"
+        whileInView="visible"
+        viewport={{ once: true }}
+        className="bg-blue-900 rounded-2xl shadow-2xl p-6 sm:p-8 flex flex-col h-full overflow-hidden"
     >
-        <div className="relative z-10 flex flex-col h-full">
-            <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center">
-                    <motion.img
-                        src={image}
-                        alt={name}
-                        className="w-16 h-16 rounded-full object-cover border-2 border-emerald-500"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1, transition: { duration: 0.5 } }}
-                    />
-                    <div className="ml-4">
-                        <h4 className="text-white font-semibold text-lg">{name}</h4>
-                        <p className="text-blue-300 text-sm">{role} • {company}</p>
-                    </div>
-                </div>
-                <FaQuoteRight className="h-8 w-8 text-emerald-500 opacity-70" />
+        <div className="flex items-center mb-4">
+            <img
+                src={image}
+                alt={name}
+                className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover border-2 border-emerald-500"
+            />
+            <div className="ml-4">
+                <h4 className="text-white font-semibold text-base sm:text-lg">{name}</h4>
+                <p className="text-blue-300 text-xs sm:text-sm">{role} • {company}</p>
             </div>
-            <div className="flex mb-4">
-                {[...Array(5)].map((_, i) =>
-                    i < rating ? <FaStar key={i} className="h-5 w-5 text-yellow-400" /> :
-                        <FaRegStar key={i} className="h-5 w-5 text-yellow-400" />
-                )}
-            </div>
-            <p className="text-blue-100 italic flex-grow">{quote}</p>
+            <FaQuoteRight className="ml-auto text-emerald-400 opacity-70 h-5 w-5 sm:h-6 sm:w-6" />
         </div>
+        <div className="flex mb-4">
+            {[...Array(5)].map((_, i) =>
+                i < rating ? (
+                    <FaStar key={i} className="h-4 w-4 text-yellow-400 mr-1" />
+                ) : (
+                    <FaRegStar key={i} className="h-4 w-4 text-yellow-400 mr-1" />
+                )
+            )}
+        </div>
+        <p className="text-blue-100 italic flex-grow text-sm sm:text-base">{quote}</p>
     </motion.div>
 );
 
@@ -95,74 +102,55 @@ export default function Testimonials() {
     };
 
     return (
-        <section id="testimonials" className="py-24 bg-gradient-to-b from-blue-900 to-blue-950 relative overflow-hidden">
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="testimonials" className="py-20 bg-gradient-to-b from-blue-900 to-blue-950">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0, transition: { duration: 0.8 } }}
-                    className="text-center mb-16"
+                    className="text-center mb-12"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                         O Que Nossos <span className="text-emerald-400">Clientes Dizem</span>
                     </h2>
-                    <p className="text-blue-200 max-w-2xl mx-auto text-lg">
+                    <p className="mt-2 text-blue-200 text-sm sm:text-base">
                         Veja como nossas soluções de CFTV oferecem segurança e tranquilidade reais.
                     </p>
                 </motion.div>
 
-                <div className="hidden md:grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Grid desktop */}
+                <div className="hidden md:grid grid-cols-3 gap-6">
                     {depoimentos.map((t, i) => (
                         <TestimonialCard key={i} {...t} />
                     ))}
                 </div>
 
-                <div className="md:hidden relative">
-                    <AnimatePresence initial={false} custom={direction}>
-                        <motion.div
-                            key={page}
-                            custom={direction}
-                            variants={slideVariants}
-                            initial="enter"
-                            animate="center"
-                            exit="exit"
-                            className="absolute w-full"
-                        >
-                            <TestimonialCard {...depoimentos[page]} />
-                        </motion.div>
-                    </AnimatePresence>
-
-                    <div className="flex justify-center items-center mt-8 space-x-4">
-                        <button onClick={() => paginate(-1)} className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-full p-2 transition">
-                            <FaChevronLeft className="h-6 w-6" />
-                        </button>
-                        <div className="flex space-x-2">
-                            {depoimentos.map((_, i) => (
-                                <motion.span
-                                    key={i}
-                                    className={`w-2 h-2 rounded-full ${i === page ? 'bg-emerald-500' : 'bg-blue-700'}`}
-                                    layoutId={i === page ? 'activeDot' : undefined}
-                                />
-                            ))}
-                        </div>
-                        <button onClick={() => paginate(1)} className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-full p-2 transition">
-                            <FaChevronRight className="h-6 w-6" />
-                        </button>
-                    </div>
+                {/* Swiper mobile */}
+                <div className="md:hidden">
+                    <Swiper
+                        modules={[Pagination, Autoplay]}
+                        pagination={{ clickable: true }}
+                        autoplay={{ delay: 5000, disableOnInteraction: false }}
+                        spaceBetween={16}
+                        slidesPerView={1}
+                        loop
+                        className="pb-6"
+                    >
+                        {depoimentos.map((t, i) => (
+                            <SwiperSlide key={i}>
+                                <TestimonialCard {...t} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0, transition: { duration: 0.6 } }}
-                    viewport={{ once: true }}
-                    className="mt-16 text-center"
-                >
+                <div className="mt-10 text-center">
                     <a
                         href="#contato"
-                        className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 rounded-full transition transform hover:scale-105 shadow-lg"
+                        className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-2 px-6 rounded-full transition transform hover:scale-105"
                     >
                         Junte-se aos Clientes Satisfeitos
                     </a>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

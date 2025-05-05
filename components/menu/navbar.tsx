@@ -1,3 +1,4 @@
+// Bibliotecas
 import {
   Navbar as HeroUINavbar,
   NavbarContent,
@@ -11,7 +12,6 @@ import { Link } from "@heroui/link";
 import { link as linkStyles } from "@heroui/theme";
 import NextLink from "next/link";
 import clsx from "clsx";
-
 import { siteConfig } from "@/config/site";
 import {
   Logo,
@@ -70,28 +70,31 @@ export const Navbar = () => {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden basis-1 pl-4" justify="end">
-        <NavbarMenuToggle />
+        <NavbarMenuToggle className="text-white" />
       </NavbarContent>
 
-      <NavbarMenu>
-        <div className="mx-4 mt-2 flex flex-col gap-2">
-          {siteConfig.navMenuItems.map((item, index) => (
+      <NavbarMenu className="bg-blue-950 p-4 rounded-b-lg shadow-lg">
+        <div className="mx-4 mt-2 h-screen flex flex-col gap-2">
+          {siteConfig.navItems.map((item, index) => (
             <NavbarMenuItem key={`${item}-${index}`}>
               <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                      ? "danger"
-                      : "foreground"
-                }
-                href="#"
-                size="lg"
+                className="text-white"
               >
                 {item.label}
               </Link>
             </NavbarMenuItem>
           ))}
+        </div>
+        <div className="mt-4 pt-4 border-t border-blue-800 flex items-center justify-around">
+          <Link isExternal href={siteConfig.links.github} aria-label="WhatsApp">
+            <WhatsappIcon className="hover:text-emerald-400 transition-colors" />
+          </Link>
+          <Link isExternal href={siteConfig.links.github} aria-label="Facebook">
+            <FacebookIcon className="hover:text-emerald-400 transition-colors" />
+          </Link>
+          <Link isExternal href={siteConfig.links.github} aria-label="Instagram">
+            <InstagramIcon className="hover:text-emerald-400 transition-colors" />
+          </Link>
         </div>
       </NavbarMenu>
     </HeroUINavbar>

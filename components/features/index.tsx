@@ -116,32 +116,24 @@ export default function Features() {
             id="features"
             className="py-24 bg-gradient-to-b from-blue-950 to-blue-900 relative overflow-hidden"
         >
-            {/* Animated Pattern Overlay */}
-            <div className="absolute inset-0 opacity-5">
-                <motion.svg
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: 360 }}
-                    transition={{ repeat: Infinity, duration: 120, ease: 'linear' }}
-                    width="100%"
-                    height="100%"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
+            <div className="absolute inset-0 opacity-10">
+                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
                     <pattern id="circuitPattern" patternUnits="userSpaceOnUse" width="100" height="100" patternTransform="scale(0.5) rotate(0)">
                         <rect width="100%" height="100%" fill="none" />
-                        <path d="M0,50 L100,50" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <path d="M50,0 L50,100" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <circle cx="50" cy="50" r="3" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <circle cx="25" cy="25" r="2" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <circle cx="75" cy="25" r="2" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <circle cx="25" cy="75" r="2" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <circle cx="75" cy="75" r="2" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <path d="M25,25 L25,50" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <path d="M75,25 L75,50" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <path d="M25,75 L50,75" stroke="currentColor" strokeWidth="1" fill="none" />
-                        <path d="M75,75 L50,75" stroke="currentColor" strokeWidth="1" fill="none" />
+                        <path d="M0,50 L100,50" stroke="gray" strokeWidth="1" fill="none" />
+                        <path d="M50,0 L50,100" stroke="gray" strokeWidth="1" fill="none" />
+                        <circle cx="50" cy="50" r="3" stroke="gray" strokeWidth="1" fill="none" />
+                        <circle cx="25" cy="25" r="2" stroke="gray" strokeWidth="1" fill="none" />
+                        <circle cx="75" cy="25" r="2" stroke="gray" strokeWidth="1" fill="none" />
+                        <circle cx="25" cy="75" r="2" stroke="gray" strokeWidth="1" fill="none" />
+                        <circle cx="75" cy="75" r="2" stroke="gray" strokeWidth="1" fill="none" />
+                        <path d="M25,25 L25,50" stroke="gray" strokeWidth="1" fill="none" />
+                        <path d="M75,25 L75,50" stroke="gray" strokeWidth="1" fill="none" />
+                        <path d="M25,75 L50,75" stroke="gray" strokeWidth="1" fill="none" />
+                        <path d="M75,75 L50,75" stroke="gray" strokeWidth="1" fill="none" />
                     </pattern>
                     <rect width="100%" height="100%" fill="url(#circuitPattern)" />
-                </motion.svg>
+                </svg>
             </div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
