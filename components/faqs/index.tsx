@@ -1,26 +1,15 @@
 'use client'
 
-// React
 import { useState } from "react";
-
-// Biblioteca
 import { motion } from "framer-motion";
 import { FaChevronCircleDown } from "react-icons/fa";
-
-// Next
 import Image from "next/image";
-
-// imagens
 import faqImg from "@/public/img/faq.png";
 
-// Variantes para scroll-triggered animations
+// Scroll-triggered animations
 const scrollVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.6, ease: "easeOut" },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
 };
 
 export default function Faqs() {
@@ -28,31 +17,40 @@ export default function Faqs() {
 
     const faqs = [
         {
-            question: "Lorem ipsum dolor sit, amet consectetur?",
+            question: "O que é um sistema de CFTV e como ele funciona?",
             answer:
-                "Ipsu m! Assumenda, dolorem nihil. Commodi, qui? Officiis provident, cumque perspiciatis magni commodi rem nihil.",
+                "CFTV (Circuito Fechado de Televisão) utiliza câmeras conectadas a gravadores para monitorar e armazenar imagens, permitindo vigilância remota ao vivo e reprodução de eventos.",
         },
         {
-            question: "Consectetur adipiscing elit, sed do eiusmod?",
+            question: "Qual a diferença entre câmeras analógicas e IP?",
             answer:
-                "Tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.",
+                "Câmeras analógicas enviam sinais via cabo coaxial e normalmente exigem DVRs; câmeras IP transmitem imagens via rede, oferecem maior resolução e flexibilidade de instalação.",
         },
         {
-            question: "Quis autem vel eum iure reprehenderit?",
+            question: "O que é detecção inteligente de movimento?",
             answer:
-                "Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur.",
+                "Tecnologia que usa algoritmos de IA para diferenciar pessoas, veículos e animais, reduzindo falsos alarmes e enviando alertas precisos.",
         },
         {
-            question: "At vero eos et accusamus et iusto odio?",
+            question: "Como funciona o armazenamento de vídeo e qual capacidade escolher?",
             answer:
-                "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque.",
+                "Vídeos podem ser armazenados em HDs ou em nuvem; a capacidade depende da resolução, taxa de quadros e quantidade de câmeras. Por exemplo, um HD de 2TB armazena cerca de 30 dias de imagens em 1080p.",
+        },
+        {
+            question: "Posso acessar as câmeras remotamente pelo celular?",
+            answer:
+                "Sim. Com aplicativos dedicados, você visualiza ao vivo, reproduz gravações e recebe notificações de eventos onde estiver.",
+        },
+        {
+            question: "Como garantir a segurança dos dados e privacidade?",
+            answer:
+                "Utilize criptografia HTTPS, autenticação segura, senhas fortes e, em câmeras IP, atualize firmware regularmente para evitar vulnerabilidades.",
         },
     ];
 
     return (
         <section className="py-16">
             <div className="mx-auto max-w-7xl px-8 md:px-6">
-                {/* Cabeçalho com scroll animation */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
@@ -60,16 +58,13 @@ export default function Faqs() {
                     variants={scrollVariants}
                     className="mb-5 sm:mb-10"
                 >
-                    <span className="font-medium text-blue-500">
-                        Nossas perguntas frequentes
-                    </span>
+                    <span className="font-medium text-blue-500">Perguntas Frequentes</span>
                     <h1 className="text-2xl font-bold text-slate-700 sm:text-3xl">
-                        Perguntas frequentes
+                        Tudo sobre CFTV
                     </h1>
                 </motion.div>
 
                 <div className="md:flex md:justify-between md:gap-6">
-                    {/* Imagem com scroll animation */}
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -77,10 +72,11 @@ export default function Faqs() {
                         variants={scrollVariants}
                         className="mb-8 flex justify-center md:mb-0 md:w-5/12"
                     >
-                        <Image src={faqImg} alt="FAQ" className="w-full" />
+                        <div className="w-full max-w-[760px]">
+                            <Image src={faqImg} alt="FAQ" className="w-full h-auto object-contain" />
+                        </div>
                     </motion.div>
 
-                    {/* Lista de FAQs */}
                     <div className="md:w-6/12">
                         <ul>
                             {faqs.map(({ question, answer }, idx) => (
@@ -92,17 +88,12 @@ export default function Faqs() {
                                     variants={scrollVariants}
                                     className="relative mb-5"
                                 >
-                                    {/* Botão de toggle */}
                                     <button
                                         type="button"
-                                        onClick={() =>
-                                            setOpenIndex(openIndex === idx ? null : idx)
-                                        }
+                                        onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
                                         className="w-full rounded-lg bg-blue-50 px-8 py-6 text-left flex items-center justify-between"
                                     >
-                                        <h4 className="font-medium text-slate-600">
-                                            {question}
-                                        </h4>
+                                        <h4 className="font-medium text-slate-600">{question}</h4>
                                         <motion.div
                                             animate={{ rotate: openIndex === idx ? 180 : 0 }}
                                             transition={{ duration: 0.3 }}
@@ -111,14 +102,10 @@ export default function Faqs() {
                                         </motion.div>
                                     </button>
 
-                                    {/* Resposta animada */}
                                     <motion.div
                                         initial={{ height: 0, opacity: 0 }}
-                                        animate={{
-                                            height: openIndex === idx ? "auto" : 0,
-                                            opacity: openIndex === idx ? 1 : 0,
-                                        }}
-                                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                                        animate={{ height: openIndex === idx ? 'auto' : 0, opacity: openIndex === idx ? 1 : 0 }}
+                                        transition={{ duration: 0.5, ease: 'easeInOut' }}
                                         className="overflow-hidden rounded-b-lg bg-blue-50/30"
                                     >
                                         <div className="p-6">

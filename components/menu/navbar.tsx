@@ -23,7 +23,7 @@ import {
 export const Navbar = () => {
 
   return (
-    <HeroUINavbar className="py-2 px-8 z-50 bg-white border-b border-gray-200" maxWidth="2xl" position="static">
+    <HeroUINavbar className="py-2 px-8 z-50 bg-blue-950" maxWidth="2xl" position="sticky">
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand as="li" className="gap-3 max-w-fit">
           <NextLink className="flex justify-start items-center gap-1" href="/">
@@ -39,7 +39,7 @@ export const Navbar = () => {
               <NextLink
                 className={clsx(
                   linkStyles({ color: "foreground" }),
-                  "data-[active=true]:text-primary data-[active=true]:font-medium",
+                  "data-[active=true]:text-primary text-white data-[active=true]:font-medium",
                 )}
                 color="foreground"
                 href={item.href}

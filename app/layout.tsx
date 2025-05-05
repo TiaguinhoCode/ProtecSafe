@@ -38,7 +38,7 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <div className="relative bg-slate-50/80 flex flex-col h-screen">
+        <div className="relative bg-slate-50/80 flex flex-col h-full">
           <Navbar />
           <main className="w-full flex">
             {children}

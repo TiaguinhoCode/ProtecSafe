@@ -1,19 +1,21 @@
 // Componentes
 import Contacts from "@/components/contacts";
-import Services from "@/components/services";
-import Benefits from "@/components/benefits";
 import Faqs from "@/components/faqs";
-import Plans from "@/components/plans";
+import Hero from "@/components/hero";
+import Features from "@/components/features";
+import HowItWorks from "@/components/howItWorks";
+import Testimonials from "@/components/testimonials";
 
 export default function Home() {
 
   return (
     <main className="w-full">
-      <Contacts />
-      <Services />
-      <Benefits />
+      <Hero />
+      <Features />
+      <HowItWorks />
+      <Testimonials />
       <Faqs />
-      <Plans />
+      <Contacts />
     </main >
   );
 }

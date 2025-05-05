@@ -16,7 +16,7 @@ export const Logo = () => (
       className="w-8 sm:w-12"
     />
     <div className="w-full ">
-      <p className="font-bold text-[20px]">PortecSafe</p>
+      <p className="font-bold text-white text-[20px]">PortecSafe</p>
     </div>
   </main>
 );
